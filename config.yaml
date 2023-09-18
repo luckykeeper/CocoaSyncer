@@ -1,0 +1,25 @@
+# cocoaSyncer Settings
+# Powered By Luckykeeper <luckykeeper@luckykeeper.site | https://luckykeeper.site>
+
+# CocoaSyncer 本体设置
+# 特别注意：本节配置文件里面所有的内容配置好了就不能再改动了
+# CocoaSyncer:
+APIPort: 80 # API 服务端口，关联本机绑定端口
+NodeName: LuckyCocoa # 节点友好名称，不可重复（对外展示）
+NodeCode: test # 节点代号，不可重复（不对外展示，建议填写地区名称缩写方便辨认）
+NodeAddress: http://127.0.0.1:44443 # 节点的对外访问地址，适配有反代的情况
+ReverseProxy: true # 是否使用反向代理代理 API（true=使用|false=不使用）
+WorkMode: leader # 工作模式（主leader|从follower）
+CocoaSecret: Cocoa&Mafuyu # 通信节点密钥，各节点可不同
+Timeout: 10 # 超时时间：分
+
+# Database:
+# 这部分的内容配置好了是可以更改的，前提是数据需要同步过去
+# 使用 xorm ，数据库理论上支持（mysql,postgres,tidb,sqlite3,sqlite,mssql,oracle,cockroach）
+# 目前请**仅使用 mysql** ，别的未经测试，可能会有意料之外的问题出现
+DataBaseType: mysql # 数据库类型
+# DSN 格式，不同数据库有所区别：
+# mysql: username:password@protocol(address)/dbname?param=value
+# sqlite file:test.db
+# pgsql: postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full
+DSN: "" # 数据库连接信息，示例：root:123@tcp(192.168.1.2:3306)/test?charset=utf8mb4

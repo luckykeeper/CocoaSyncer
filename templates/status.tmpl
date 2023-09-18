@@ -1,0 +1,95 @@
+<!-- CocoaSyncer Status -->
+<!-- Powered By Luckykeeper <luckykeeper@luckykeeper.site | https://luckykeeper.site | https://github.com/luckykeeper> -->
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/static/favicon.ico"/>
+    <title>CocoaSyncer - {{.nodeName}}</title>
+</head>
+<body style="background-image: url(&quot;/static/sakura.png&quot;);">
+    <div><center>
+        <p>
+            <span>CocoaSyncer - {{.nodeName}} 已正常运行<br>Powered By Luckykeeper &lt; luckykeeper@luckykeeper.site | 
+                <a href="http://luckykeeper.site" target="_blank">http://luckykeeper.site</a> &gt;</span>
+        </p>
+        <p>
+            <span>本节点信息如下：</span>
+        </p>
+        <p>
+            <table>
+            <tr>
+                <td class="CocoaProperties">节点名称</td>
+                <td class="CocoaValues">{{.nodeName}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">API 端口</td>
+                <td class="CocoaValues">{{.apiPort}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">节点访问地址</td>
+                <td class="CocoaValues">{{.nodeAddress}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">节点工作模式</td>
+                <td class="CocoaValues">{{.workMode}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">是否使用反代</td>
+                <td class="CocoaValues">{{.reverseProxy}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">超时时间（分）</td>
+                <td class="CocoaValues">{{.timeout}}</td>
+            </tr>
+            <!-- <tr>
+                <td class="CocoaProperties">集群节点信息聚合</td>
+                <td class="CocoaValues">{{.otherCocoaSyncer}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">受管服务名称</td>
+                <td class="CocoaValues">{{.cocoaManagedService}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">云平台信息</td>
+                <td class="CocoaValues">{{.cloudPlatformInfo}}</td>
+            </tr> -->
+            <tr>
+                <td class="CocoaProperties">数据初始化时间</td>
+                <td class="CocoaValues">{{.createdAt}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">数据最近一次更新时间</td>
+                <td class="CocoaValues">{{.updatedAt}}</td>
+            </tr>
+            <tr>
+                <td class="CocoaProperties">设置数据导入情况</td>
+                <td class="CocoaValues">{{.configImported}}</td>
+            </tr>
+            </table>            
+        </p>
+        <p>
+            <img src="/static/cocoa" alt="cocoa">
+        </p>
+    </center></div>
+    <style>
+        table {
+        border-collapse: collapse;
+      }
+      td,
+      th {
+        border: 1px solid black;
+        padding: 10px 20px;
+      }
+      .CocoaProperties{
+        background-color: greenyellow;
+      }
+      .CocoaValues{ 
+        background-color: aquamarine;
+      }
+      </style>
+</body>
+</html>

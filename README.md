@@ -96,7 +96,7 @@ COPYRIGHT:
 
 另起一个终端
 
-``./cocoaSyncer node` 添加节点，注意这个操作只能在 `leader` 侧执行， `follower` 侧无权执行此命令
+`./cocoaSyncer node` 添加节点，注意这个操作只能在 `leader` 侧执行， `follower` 侧无权执行此命令
 
 #### 添加云服务商信息
 

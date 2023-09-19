@@ -1,9 +1,14 @@
 // CocoaSyncer - 心爱酱多节点智能解析平台 - 程序入点
-// @CreateTime : 2023/8/30 15:10
-// @LastModified : 2023/8/30 15:10
-// @Author : Luckykeeper
-// @Email : luckykeeper@luckykeeper.site
-// @Project : CocoaSyncer
+//	@CreateTime		: 2023/8/30 15:10
+//	@LastModified	: 2023/9/19 17:06
+//	@Author			: Luckykeeper
+//	@Email			: luckykeeper@luckykeeper.site
+//	@Project		: CocoaSyncer
+//	@contact.name	Luckykeeper
+//	@contact.url	https://github.com/luckykeeper
+//	@contact.email	luckykeeper@luckykeeper.site
+//	@license.name	Apache 2.0
+//	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 
 // 相关参考文档：
 // 阿里云 DNS API：
@@ -53,7 +58,7 @@ func CocoaSyncerCLI() {
 			"\nPowered By Luckykeeper <luckykeeper@luckykeeper.site | https://luckykeeper.site>" +
 			"\n————————————————————————————————————————" +
 			"\n注意：使用前需要先填写同目录下 config.yaml !",
-		Version: "1.0.0_build20230918",
+		Version: "1.0.1_build20230919",
 		Commands: []*cli.Command{
 			// 爬取数据
 			{
@@ -159,7 +164,11 @@ func cocoaSyncerAPIService(CocoaBasic model.CocoaBasic, debugMode bool) {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	cocoaSyncerRouter.CocoaSyncerRouter = gin.Default()
-	cocoaSyncerRouter.GinRouter(cocoaSyncerRouter.CocoaSyncerRouter)
+	if debugMode {
+		cocoaSyncerRouter.GinRouter(cocoaSyncerRouter.CocoaSyncerRouter, true)
+	} else {
+		cocoaSyncerRouter.GinRouter(cocoaSyncerRouter.CocoaSyncerRouter, false)
+	}
 
 	// 使用反代
 	if CocoaBasic.ReverseProxy {

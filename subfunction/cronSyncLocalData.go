@@ -1,9 +1,9 @@
 // CocoaSyncer - 心爱酱多节点智能解析平台 - 定时同步 NodeInfo 到本机（仅同步访问地址，供 web 展示）
-// @CreateTime : 2023/8/30 15:10
-// @LastModified : 2023/8/30 15:10
-// @Author : Luckykeeper
-// @Email : luckykeeper@luckykeeper.site
-// @Project : CocoaSyncer
+//	@CreateTime		: 2023/8/30 15:10
+//	@LastModified	: 2023/8/30 15:10
+//	@Author			: Luckykeeper
+//	@Email			: luckykeeper@luckykeeper.site
+//	@Project		: CocoaSyncer
 
 package subFunction
 

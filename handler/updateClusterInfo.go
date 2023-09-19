@@ -1,9 +1,9 @@
 // CocoaSyncer - 心爱酱多节点智能解析平台 - 集群状态信息
-// @CreateTime : 2023/8/30 15:10
-// @LastModified : 2023/8/30 15:10
-// @Author : Luckykeeper
-// @Email : luckykeeper@luckykeeper.site
-// @Project : CocoaSyncer
+//	@CreateTime		: 2023/8/30 15:10
+//	@LastModified	: 2023/9/19 17:06
+//	@Author			: Luckykeeper
+//	@Email			: luckykeeper@luckykeeper.site
+//	@Project		: CocoaSyncer
 
 package handler
 
@@ -16,6 +16,16 @@ import (
 )
 
 // api - V1 - 加入集群/更新信息
+// UpdateClusterInfo godoc
+//
+//	@Summary		加入集群/更新信息
+//	@Description	【程序调用】用于 leader 节点将 follower 节点加入集群，由 leader 节点向 follower 节点推送数据
+//	@Tags			业务
+//	@Accept			json
+//	@Produce		json
+//	@Param			apiRequest	body		model.APIRequest	false	"API 请求数据，鉴权参数是 apiRequest.CocoaSecret ，节点仅接收 `otherCocoaSyncer`, `cocoaManagedService`, `cloudPlatformInfo`的数据，其中状态码和喂狗数据不接收"
+//	@Success		200			{object}	model.ServerReturn
+//	@Router			/updateClusterInfo [post]
 func UpdateClusterInfo(context *gin.Context) {
 	// 这个方法仅限 follower 类型的节点可被调用
 	getCocoaBasic := &model.CocoaBasic{ConfigImported: true}

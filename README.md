@@ -137,6 +137,8 @@ Prometheus yaml 文件模板
 
 doc 目录下 [./doc/接口文档.md](./doc/接口文档.md) 下给出了所有 HTTP 接口的文档，请自行查阅
 
+另外使用 `runDebug` 运行的时候可以在 `/v1/swagger/index.html` 查阅 Swagger 文档，当使用 `runProd` 时这个地址会返回 404 ，生产环境请务必使用 `runProd` 运行
+
 ## 小工具合集
 
 ### 优香酱小工具系列

@@ -1,9 +1,9 @@
 // CocoaSyncer - 心爱酱多节点智能解析平台 - 集群状态信息
-// @CreateTime : 2023/8/30 15:10
-// @LastModified : 2023/8/30 15:10
-// @Author : Luckykeeper
-// @Email : luckykeeper@luckykeeper.site
-// @Project : CocoaSyncer
+//	@CreateTime		: 2023/8/30 15:10
+//	@LastModified	: 2023/9/19 17:06
+//	@Author			: Luckykeeper
+//	@Email			: luckykeeper@luckykeeper.site
+//	@Project		: CocoaSyncer
 
 package handler
 
@@ -17,6 +17,16 @@ import (
 )
 
 // API - V1 - 获取集群信息
+// GetClusterInfo godoc
+//
+//	@Summary		获取集群信息
+//	@Description	【程序调用】获取节点和集群的信息
+//	@Tags			业务
+//	@Accept			json
+//	@Produce		json
+//	@Param			apiRequest	body		model.APIRequest	false	"API 请求数据，仅传其中的 apiRequest.CocoaSecret 即可完成该接口的鉴权，不需要传其它参数"
+//	@Success		200			{object}	model.ServerReturn
+//	@Router			/getClusterInfo [post]
 func GetClusterInfo(context *gin.Context) {
 	var apiRequest model.APIRequest
 	context.ShouldBind(&apiRequest)

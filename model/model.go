@@ -1,9 +1,9 @@
 // CocoaSyncer - 心爱酱多节点智能解析平台 - 数据模型
-// @CreateTime : 2023/8/30 15:10
-// @LastModified : 2023/8/30 15:10
-// @Author : Luckykeeper
-// @Email : luckykeeper@luckykeeper.site
-// @Project : CocoaSyncer
+//	@CreateTime		: 2023/8/30 15:10
+//	@LastModified	: 2023/9/19 17:06
+//	@Author			: Luckykeeper
+//	@Email			: luckykeeper@luckykeeper.site
+//	@Project		: CocoaSyncer
 
 package model
 
@@ -71,9 +71,9 @@ type CloudPlatformInfo struct {
 // ________________________________________________________________
 // 返回数据
 type ServerReturn struct {
-	StatusCode   int        `json:"statusCode"` // 结果码 （操作成功200，Token错误401）
-	StatusString string     `json:"statusString"`
-	CocoaBasic   CocoaBasic `json:"cocoaBasic"`
+	StatusCode   int        `json:"statusCode"`   // 业务码 （操作成功200，Token错误401）
+	StatusString string     `json:"statusString"` // 业务码的文字说明
+	CocoaBasic   CocoaBasic `json:"cocoaBasic"`   // 业务数据
 }
 
 // ________________________________________________________________

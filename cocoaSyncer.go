@@ -60,7 +60,6 @@ func CocoaSyncerCLI() {
 			"\n注意：使用前需要先填写同目录下 config.yaml !",
 		Version: "1.0.1_build20230919",
 		Commands: []*cli.Command{
-			// 爬取数据
 			{
 				Name:    "runProd",
 				Aliases: []string{"r"},
@@ -132,7 +131,7 @@ func CocoaSyncerCLI() {
 				},
 			},
 		},
-		Copyright: "Luckykeeper <luckykeeper@luckykeeper.site | https://luckykeeper.site> | https://github.com/luckykeeper",
+		Copyright: "Luckykeeper <luckykeeper@luckykeeper.site | https://luckykeeper.site> | https://github.com/luckykeeper>",
 	}
 
 	if err := CocoaSyncer.Run(os.Args); err != nil {

@@ -43,6 +43,9 @@ func GetNodeNameBadge(context *gin.Context) {
 	_ = json.Unmarshal(thisCocoaJson, &thisCocoaMap)
 
 	// tmplate 用法：https://www.liwenzhou.com/posts/Go/template/
+	// 注意要想 img 能够显示，必须指定 Content-Type
+	context.Header("Content-Type", "image/svg+xml;charset=utf-8")
+	context.Header("Content-Disposition", "Badge of "+thisCocoa.NodeName)
 	context.HTML(http.StatusOK, "nodeName.tmpl", thisCocoaMap)
 	// context.HTML(http.StatusOK, "status.tmpl", gin.H{
 	// 	"title": thisCocoa.NodeName,

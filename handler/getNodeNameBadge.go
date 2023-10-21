@@ -11,6 +11,7 @@ import (
 	"cocoaSyncer/model"
 	subFunction "cocoaSyncer/subfunction"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -34,8 +35,19 @@ func GetNodeNameBadge(context *gin.Context) {
 	thisCocoa.Dsn = "*****"
 	thisCocoa.CocoaSecret = "*****"
 	thisCocoa.CloudPlatformInfo = nil
-	thisCocoa.OtherCocoaSyncer = nil
+	// thisCocoa.OtherCocoaSyncer = nil
 	thisCocoa.CocoaManagedService = nil
+
+	// 在线节点数量显示
+	nodesTotalNum := 0
+	nodeLiveNum := 0
+	for _, node := range thisCocoa.OtherCocoaSyncer {
+		nodesTotalNum++
+		if node.StatusCode == 200 {
+			nodeLiveNum++
+		}
+	}
+	thisCocoa.NodeName = thisCocoa.NodeName + " | " + fmt.Sprint(nodeLiveNum) + "/" + fmt.Sprint(nodesTotalNum)
 
 	// 转 map[string]interface{} 给前端
 	thisCocoaJson, _ := json.Marshal(&thisCocoa)

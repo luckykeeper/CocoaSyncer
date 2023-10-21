@@ -27,7 +27,7 @@
 
 ### 下载
 
-Release 下找 Pre-Release ， Pre-Release 的原因是目前暂时没有环境进行测试，测试环境试了是没有问题的，但是没上生产环境验证，后续完成验证后将发正式版
+Release 下有打包好的各平台的二进制运行文件，请根据自己使用的平台选择下载
 
 ### 环境准备
 
@@ -112,7 +112,7 @@ COPYRIGHT:
 
 在终端执行 `./cocoaSyner status` 可以看详细的数据，在 web `/v1/status` 获取非敏感运行数据
 
-如果需要在 web 展示访客正在使用那台服务器，可以贴上 `/v1/badge` 的 badge ，效果类似下面这样，右边会自动显示为节点友好名称，推荐不要超过 11 个英文字符
+如果需要在 web 展示访客正在使用那台服务器，可以贴上 `/v1/badge` 的 badge ，效果类似下面这样，右边会自动显示为节点友好名称（1.0.2 版 Badge 新增了在线节点显示），推荐不要超过 11 个英文字符
 
 ![](https://img.shields.io/badge/CocoaSyncer-LuckyCocoa-pink)
 

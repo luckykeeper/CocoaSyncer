@@ -1,6 +1,6 @@
 // CocoaSyncer - 心爱酱多节点智能解析平台 - 程序入点
 //	@CreateTime		: 2023/8/30 15:10
-//	@LastModified	: 2023/9/19 17:06
+//	@LastModified	: 2025/11/10 19:52
 //	@Author			: Luckykeeper
 //	@Email			: luckykeeper@luckykeeper.site
 //	@Project		: CocoaSyncer
@@ -75,6 +75,15 @@ func CocoaSyncerCLI() {
 				Usage:   "启动 CocoaSyncer (调试)",
 				Action: func(cCtx *cli.Context) error {
 					CocoaSyncer(true)
+					return nil
+				},
+			},
+			{
+				Name:    "runDemo",
+				Aliases: []string{"re"},
+				Usage:   "启动 CocoaSyncer (Demo[onlyBadge])",
+				Action: func(cCtx *cli.Context) error {
+					CocoaSyncerDemo(false)
 					return nil
 				},
 			},
@@ -157,6 +166,17 @@ func CocoaSyncer(debugMode bool) {
 	cocoaSyncerAPIService(CocoaBasic, debugMode)
 }
 
+func CocoaSyncerDemo(debugMode bool) {
+	//subFunction.CronTaskInit()
+	color.Cyan("Welcome To Use CocoaSyncer!")
+	color.Cyan("Reading Configuration...")
+	readConfig(debugMode)
+	if debugMode {
+		log.Println("调试模式：ON!")
+	}
+	cocoaSyncerAPIServiceDemo(CocoaBasic, debugMode)
+}
+
 // API 服务入口
 func cocoaSyncerAPIService(CocoaBasic model.CocoaBasic, debugMode bool) {
 	if !debugMode {
@@ -179,6 +199,51 @@ func cocoaSyncerAPIService(CocoaBasic model.CocoaBasic, debugMode bool) {
 	srv := &http.Server{
 		Addr:    ":" + strconv.Itoa(CocoaBasic.APIPort),
 		Handler: cocoaSyncerRouter.CocoaSyncerRouter,
+	}
+
+	go func() {
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Fatalf("listen: %s\n", err)
+		}
+
+	}()
+
+	// 等待中断信号以优雅地关闭服务器（设置 15 秒的超时时间）
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+	log.Println("等待最长15秒处理完剩余连接后关闭服务")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(ctx); err != nil {
+		log.Fatal("服务器关闭超时，强制退出，原因:", err)
+	}
+	log.Println("服务成功关闭,mafumayumayumayu~~~~")
+}
+
+// API 服务入口 - Demo (OnlyBadge)
+func cocoaSyncerAPIServiceDemo(CocoaBasic model.CocoaBasic, debugMode bool) {
+	if !debugMode {
+		gin.SetMode(gin.ReleaseMode)
+	}
+	cocoaSyncerRouter.CocoaSyncerRouterDemo = gin.Default()
+	if debugMode {
+		cocoaSyncerRouter.GinRouterDemo(cocoaSyncerRouter.CocoaSyncerRouterDemo, CocoaBasic)
+	} else {
+		cocoaSyncerRouter.GinRouterDemo(cocoaSyncerRouter.CocoaSyncerRouterDemo, CocoaBasic)
+	}
+
+	// 使用反代
+	if CocoaBasic.ReverseProxy {
+		cocoaSyncerRouter.CocoaSyncerRouterDemo.ForwardedByClientIP = true
+	} else {
+		// 不使用反代
+		cocoaSyncerRouter.CocoaSyncerRouterDemo.ForwardedByClientIP = false
+	}
+	srv := &http.Server{
+		Addr:    ":" + strconv.Itoa(CocoaBasic.APIPort),
+		Handler: cocoaSyncerRouter.CocoaSyncerRouterDemo,
 	}
 
 	go func() {
